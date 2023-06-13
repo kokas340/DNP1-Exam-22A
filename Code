@@ -1,0 +1,75 @@
+  public async Task AddImageToAlbumAsync(Image img, string album)
+    {
+        Album existingGrade = await context.Album
+            .FirstOrDefaultAsync(g => g.Title == album);
+        if (existingGrade != null)
+        {
+            //no album with that name
+        }
+        else
+        {
+ 
+            Image toCreate = new Image()
+            {
+                Title = img.Title,
+                Topic = img.Topic,
+                Description  = img.Description,
+                Url = img.Url,
+                AlbumTitle = album
+            };
+            await context.Image.AddAsync(toCreate);
+        }
+
+        await context.SaveChangesAsync();
+    }
+
+    public async Task<ICollection<Image>> GetImageAsync(string albumCreator, string topic)
+    {
+        ICollection<Image> images = new List<Image>();
+
+        ICollection<Album> albums = await context.Album
+            .Where(a => a.CreatedBy == albumCreator)
+            .ToListAsync();
+
+        foreach (var album in albums)
+        {
+            var imagesAlbum = await context.Image
+                .Where(i => i.AlbumTitle == album.Title && i.Topic == topic)
+                .ToListAsync();
+        
+            foreach (var image in imagesAlbum)
+            {
+                images.Add(image);
+            }
+        }
+
+        return images;
+    }
+    
+    [Required]: This attribute indicates that a property must have a non-null value. It is used to ensure that the property is not left empty or null when it is required.
+
+[MaxLength(length)]: This attribute specifies the maximum length allowed for a string property. The length parameter indicates the maximum number of characters allowed in the string.
+
+[MinLength(length)]: This attribute specifies the minimum length required for a string property. The length parameter indicates the minimum number of characters required in the string.
+
+[Range(minimum, maximum)]: This attribute is used to restrict numeric or DateTime properties to a specific range. The minimum and maximum parameters define the allowable range for the property's value.
+
+[RegularExpression(pattern)]: This attribute allows you to specify a regular expression pattern that a string property must match. It is useful for enforcing specific formatting or validation rules on string values.
+
+[EmailAddress]: This attribute ensures that a string property represents a valid email address according to a predefined set of rules. It is used to validate email addresses.
+
+[Compare(otherProperty)]: This attribute is used to compare the value of a property with another property in the same class. It can be useful for confirming passwords or validating that two properties have the same value.
+
+[StringLength(maximumLength)]: This attribute specifies both the minimum and maximum length of a string property. You can set only the maximum length by providing the maximumLength parameter, or you can set both the minimum and maximum lengths by providing the minimumLength and maximumLength parameters.
+
+[RegularExpression(pattern, RegexOptions)]: This attribute allows you to specify a regular expression pattern for string properties and provides additional options through the RegexOptions parameter. It gives you more control over how the regular expression is matched against the property value.
+
+[Range(type, minimum, maximum)]: This attribute is similar to the previous [Range] attribute, but it allows you to specify the type of the property explicitly. It is useful when working with nullable value types or custom types that need to be validated within a specific range.
+
+[Compare(otherProperty, ErrorMessage)]: This attribute is used to compare the value of a property with another property in the same class and provides a custom error message through the ErrorMessage parameter. It allows you to customize the error message when the comparison fails.
+
+[CreditCard]: This attribute ensures that a string property represents a valid credit card number. It validates the format and structure of the credit card number.
+
+[Phone]: This attribute is used to validate that a string property represents a valid phone number. It ensures that the phone number adheres to the standard format defined by the attribute.
+
+[Url]: This attribute validates that a string property represents a valid URL (Uniform Resource Locator). It ensures that the URL is well-formed and follows the standard syntax.
