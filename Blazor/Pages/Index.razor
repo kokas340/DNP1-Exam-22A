@@ -1,0 +1,54 @@
+﻿@page "/"
+
+@inject NavigationManager navMgr
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+
+<div class="buttons" style="padding: 3rem 0 3rem 0">
+    <div class="offset-md-10 col-md-2" style="padding-bottom: 2rem;">
+        <div class="field">
+            <a class="loginbtn" @onclick="CreateStudent">Create Student</a>
+        </div>
+    </div>
+</div>
+
+<div class="buttons" style="padding: 3rem 0 3rem 0">
+    <div class="offset-md-10 col-md-2" style="padding-bottom: 2rem;">
+        <div class="field">
+            <a class="loginbtn" @onclick="AddGrade">Add Grade</a>
+        </div>
+    </div>
+</div>
+
+<div class="buttons" style="padding: 3rem 0 3rem 0">
+    <div class="offset-md-10 col-md-2" style="padding-bottom: 2rem;">
+        <div class="field">
+            <a class="loginbtn" @onclick="Statistics">Statistics</a>
+        </div>
+    </div>
+</div>
+
+
+@code{
+
+    private async Task CreateStudent()
+    {
+        navMgr.NavigateTo("/CreateStudent");
+    }
+
+    private async Task AddGrade()
+    {
+        navMgr.NavigateTo("/AddGrade");
+    }
+
+    private async Task Statistics()
+    {
+        navMgr.NavigateTo("/Statistics");
+    }
+
+
+}

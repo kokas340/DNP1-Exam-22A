@@ -1,0 +1,17 @@
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\bin\Debug\net7.0\EfcDataAccess.deps.json
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\bin\Debug\net7.0\EfcDataAccess.runtimeconfig.json
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\bin\Debug\net7.0\EfcDataAccess.dll
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\bin\Debug\net7.0\EfcDataAccess.pdb
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\bin\Debug\net7.0\Shared.dll
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\bin\Debug\net7.0\Shared.pdb
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\EfcDataAccess.csproj.AssemblyReference.cache
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\EfcDataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\EfcDataAccess.AssemblyInfoInputs.cache
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\EfcDataAccess.AssemblyInfo.cs
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\EfcDataAccess.csproj.CoreCompileInputs.cache
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\EfcDataAccess.csproj.CopyComplete
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\EfcDataAccess.dll
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\refint\EfcDataAccess.dll
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\EfcDataAccess.pdb
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\EfcDataAccess.genruntimeconfig.cache
+C:\Users\jacks\RiderProjects\DnpExam326238\EfcDataAccess\obj\Debug\net7.0\ref\EfcDataAccess.dll

@@ -1,0 +1,78 @@
+﻿@page "/AddGrade"
+@using Blazor.Data
+@using global::Shared
+@inject IStudentService StudentService
+@inject NavigationManager navMgr
+
+<PageTitle>Add Grade</PageTitle>
+<select class="form-select" @bind="@selectedStudentId">
+    <option value="">Select a student</option>
+    @foreach (var student in students)
+    {
+        <option value="@student.Student_Id">@student.Name</option>
+    }
+</select>
+
+<tr>
+    <td>
+        <label for="course" class="form-label">course</label>
+    </td>
+    <td>
+        <input id="course" class="form-input w-100" @bind="@course"/>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="grade" class="form-label">grade</label>
+    </td>
+    <td>
+        <input id="grade" class="form-input w-100" @bind="@gradee"/>
+    </td>
+</tr>
+
+<button class="btn btn-primary" @onclick="SetGrade">Set Grade</button>
+
+
+@code {
+    ICollection<Student> students;
+    private int selectedStudentId;
+    private int gradee;
+    private string course;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        await GetAllStudents();
+    }
+    private async Task GetAllStudents()
+    {
+        try
+        {
+            students = await StudentService.GetAllStudentsAsync();
+           
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+    private async Task SetGrade()
+    {
+        try
+        {
+            GradeInCourse grade = new GradeInCourse()
+            {
+                Student_Id = selectedStudentId,
+                CourseCode = course,
+                Grade = gradee
+            };
+            
+            students = await StudentService.AddGradeToStudentAsync(grade,selectedStudentId);
+           
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+}

@@ -1,0 +1,54 @@
+﻿@page "/CreateStudent"
+@using Blazor.Data
+@using global::Shared
+@inject IStudentService StudentService
+@inject NavigationManager navMgr
+<PageTitle>Create Student</PageTitle>
+
+<tr>
+    <td>
+        <label for="username" class="form-label">nAME</label>
+    </td>
+    <td>
+        <input id="username" class="form-input w-100" @bind="@userName"/>
+    </td>
+</tr>
+<tr>
+    <td>
+        <label for="programe" class="form-label">programe</label>
+    </td>
+    <td>
+        <input id="programe" class="form-input w-100" @bind="@programe"/>
+    </td>
+</tr>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private string userName;
+    private string programe;
+
+    private async Task IncrementCount()
+    {
+        if (string.IsNullOrWhiteSpace(userName) ||
+            string.IsNullOrWhiteSpace(programe))
+        {
+            return;
+        }
+        try
+        {
+            Student studentDto = new Student()
+            {
+                Name = userName,
+                Programme = programe
+            };
+            await StudentService.CreateAsync(studentDto);
+            navMgr.NavigateTo("/login");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+}

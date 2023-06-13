@@ -1,0 +1,74 @@
+﻿@page "/Statistics"
+@using Blazor.Data
+@using global::Shared
+@inject IGradeService GradeService
+@inject NavigationManager navMgr
+<PageTitle>Statistics</PageTitle>
+<tr>
+    <td>
+        <label for="username" class="form-label">subject</label>
+    </td>
+    <td>
+        <input id="username" class="form-input w-100" @bind="@subject"/>
+    </td>
+</tr>
+<button class="btn btn-primary" @onclick="SearchSubjectStats">Find Stats</button>
+
+@if (TotalNumberOfStudents.HasValue)
+{
+    <h3>Statistics for @subject:</h3>
+    <table>
+        <tr>
+            <td>Total Number of Students:</td>
+            <td>@TotalNumberOfStudents</td>
+        </tr>
+        <tr>
+            <td>Total Number of Passed Students:</td>
+            <td>@TotalNumberOfPassedStudents</td>
+        </tr>
+        <tr>
+            <td>Average Grade Overall:</td>
+            <td>@AvgGradeOverall</td>
+        </tr>
+        <tr>
+            <td>Average Grade of Passed Students:</td>
+            <td>@AvgGradeOfPassed</td>
+        </tr>
+        <tr>
+            <td>Median Grade:</td>
+            <td>@MedianGrade</td>
+        </tr>
+    </table>
+}
+
+@code {
+    private string subject;
+    private int? TotalNumberOfPassedStudents;
+    private int? TotalNumberOfStudents;
+    private float? AvgGradeOverall;
+    private float? AvgGradeOfPassed;
+    private int? MedianGrade;
+
+    private async Task SearchSubjectStats()
+    {
+        if (string.IsNullOrWhiteSpace(subject) )
+        {
+            return;
+        }
+        try
+        {
+            StatisticsOverviewDTO stats = new StatisticsOverviewDTO();
+            stats = await GradeService.GetCourseStatisticsAsync(subject);
+            TotalNumberOfStudents = stats.TotalNumberOfStudents;
+            TotalNumberOfPassedStudents = stats.TotalNumberOfPassedStudents;
+            AvgGradeOverall = stats.AvgGradeOverall;
+            AvgGradeOfPassed = stats.AvgGradeOfPassed;
+            MedianGrade = stats.MedianGrade;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+}
